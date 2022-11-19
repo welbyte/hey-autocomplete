@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.autocomplete-field {
+  @apply flex relative flex-wrap flex-1;
+}
+
+.autocomplete-list {
+  @apply bg-gradient-to-br from-amber-300 to-pink-300 flex flex-col list-none absolute z-10 m-0 p-0 overflow-y-auto font-semibold leading-none
+  rounded-b-lg max-w-full min-w-[18rem] -left-1 top-full;
+
+  --font-size: 1rem;
+  --max-options: 6;
+  --option-padding: 0.75rem;
+  --option-height: calc(
+    var(--option-padding) + var(--font-size) + var(--option-padding)
+  );
+  --max-height: calc(var(--max-options) * var(--option-height));
+
+  max-height: var(--max-height);
+  font-size: var(--font-size);
+}
+
+.autocomplete-list [role='option'] {
+  @apply m-0 transition-colors cursor-pointer;
+  padding: var(--option-padding) 1em;
+}
+
+.autocomplete-list [role='option'][aria-selected='true'] {
+  @apply bg-amber-50 bg-opacity-30;
+}
+.autocomplete-list [role='option'][aria-selected='false']:hover {
+  @apply bg-amber-50 bg-opacity-20;
+}
+
+.autocomplete-field__selected-value {
+  @apply bg-gradient-to-r from-amber-200 to-yellow-400 m-0.5 rounded-full px-3 py-1 flex items-center flex-nowrap
+  whitespace-nowrap overflow-hidden cursor-default;
+}
+
+.autocomplete-field__selected-value-text {
+  @apply max-w-full overflow-hidden text-ellipsis;
+}
+
+.autocomplete-field__selected-value-remove {
+  @apply border-0 ml-2 w-[1em] overflow-hidden;
+}
+
+.autocomplete-field__selected-value-remove:hover {
+  @apply cursor-pointer;
+}
+
+.autocomplete-field__selected-value-remove:focus {
+  @apply outline-none;
+}

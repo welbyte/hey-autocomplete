@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="build/index.js"></script>
+    <link rel="stylesheet" href="build/style.css" />
+    <title>Hey.com Autocomplete</title>
+  </head>
+
+  <body class="p-10">
+    <div class="flex items-center">
+      <label
+        for="autocomplete-input"
+        id="autocomplete-label"
+        class="block mr-2"
+      >
+        Attendees
+      </label>
+
+      <div
+        data-controller="autocomplete"
+        data-autocomplete-url-value="/people.json"
+        data-action="copy@document->autocomplete#copySelected cut@document->autocomplete#cutSelected"
+        aria-expanded="false"
+        class="autocomplete-field"
+      >
+        <select
+          name="meeting[attendee_id][]"
+          multiple
+          data-template-id="autocomplete-input-select-template"
+          data-autocomplete-target="select"
+          hidden
+        ></select>
+
+        <template id="autocomplete-input-select-template">
+          <span
+            class="autocomplete-field__selected-value"
+            data-value=""
+            tabindex="0"
+            data-action="keydown->autocomplete#removeSelected"
+          >
+            <span
+              class="autocomplete-field__selected-value-text"
+              data-content="label"
+            ></span>
+            <button
+              class="autocomplete-field__selected-value-remove"
+              data-autocomplete-remove-button
+              data-action="autocomplete#remove"
+              tabindex="-1"
+              data-value=""
+              type="button"
+            >
+              <span aria-hidden="true">×</span>
+              <span class="sr-only">
+                Remove
+                <span data-content="screenReaderLabel"></span>
+              </span>
+            </button>
+          </span>
+        </template>
+
+        <div class="autocomplete-field">
+          <input
+            class="focus:outline-none w-full h-full"
+            id="autocomplete-input"
+            type="text"
+            autofocus
+            multiple
+            placeholder="Who&rsquo;s invited?"
+            data-autocomplete-target="input"
+            data-action="
+          focus->autocomplete#search input->autocomplete#search
+          paste->autocomplete#extract keydown->autocomplete#navigate
+          submit@document->autocomplete#teardown:capture"
+            aria-autocomplete="list"
+            aria-controls="autocomplete-list"
+            aria-haspopup="listbox"
+            autocomplete="off"
+            role="combobox"
+            spellcheck="false"
+          />
+
+          <ul
+            aria-labelledby="autocomplete-label"
+            data-autocomplete-target="list"
+            data-action="mouseover->autocomplete#select mousedown#autocomplete#select mousedown->autocomplete#commit"
+            id="autocomplete-list"
+            role="listbox"
+            class="autocomplete-list"
+            hidden
+          ></ul>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

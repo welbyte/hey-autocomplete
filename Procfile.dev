@@ -1,0 +1,2 @@
+js: npm run build
+css: npm run build:css
