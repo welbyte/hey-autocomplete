@@ -2,13 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  @apply dark:bg-gray-800 dark:text-white;
+}
+
 .autocomplete-field {
   @apply flex relative flex-wrap flex-1;
 }
 
+.autocomplete-field input {
+  @apply focus:outline-none w-full h-full dark:bg-gray-800;
+}
+
 .autocomplete-list {
-  @apply bg-gradient-to-br from-amber-300 to-pink-300 flex flex-col list-none absolute z-10 m-0 p-0 overflow-y-auto font-semibold leading-none
-  rounded-b-lg max-w-full min-w-[18rem] -left-1 top-full;
+  @apply bg-gradient-to-br dark:from-amber-800 dark:to-yellow-700 from-amber-300 to-pink-300 flex flex-col
+  list-none absolute z-10 m-0 p-0 overflow-y-auto font-semibold leading-none rounded-b-lg
+  max-w-full min-w-[18rem] -left-1 top-full;
 
   --font-size: 1rem;
   --max-options: 6;
@@ -35,8 +44,8 @@
 }
 
 .autocomplete-field__selected-value {
-  @apply bg-gradient-to-r from-amber-200 to-yellow-400 m-0.5 rounded-full px-3 py-1 flex items-center flex-nowrap
-  whitespace-nowrap overflow-hidden cursor-default;
+  @apply bg-gradient-to-r dark:from-amber-600 dark:to-yellow-700 from-amber-200 to-yellow-400 m-0.5
+  rounded-full px-3 py-1 flex items-center flex-nowrap whitespace-nowrap overflow-hidden cursor-default;
 }
 
 .autocomplete-field__selected-value-text {

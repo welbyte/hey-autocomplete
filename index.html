@@ -21,7 +21,7 @@
 
       <div
         data-controller="autocomplete"
-        data-autocomplete-url-value="/people.json"
+        data-autocomplete-url-value="/hey-autocomplete/people.json"
         data-action="copy@document->autocomplete#copySelected cut@document->autocomplete#cutSelected"
         aria-expanded="false"
         class="autocomplete-field"
@@ -64,7 +64,6 @@
 
         <div class="autocomplete-field">
           <input
-            class="focus:outline-none w-full h-full"
             id="autocomplete-input"
             type="text"
             autofocus
@@ -74,6 +73,7 @@
             data-action="
           focus->autocomplete#search input->autocomplete#search
           paste->autocomplete#extract keydown->autocomplete#navigate
+          blur->autocomplete#teardown
           submit@document->autocomplete#teardown:capture"
             aria-autocomplete="list"
             aria-controls="autocomplete-list"
@@ -86,8 +86,10 @@
           <ul
             aria-labelledby="autocomplete-label"
             data-autocomplete-target="list"
-            data-action="mouseover->autocomplete#select mousedown#autocomplete#select mousedown->autocomplete#commit"
-            id="autocomplete-list"
+            data-action="
+              mouseover->autocomplete#select
+              mousedown#autocomplete#select
+              mousedown->autocomplete#commit"
             role="listbox"
             class="autocomplete-list"
             hidden
