@@ -2,16 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  @apply dark:bg-gray-800 dark:text-white;
-}
-
 .autocomplete-field {
   @apply flex relative flex-wrap flex-1;
 }
 
 .autocomplete-field input {
-  @apply focus:outline-none w-full h-full dark:bg-gray-800;
+  @apply focus:outline-none w-full h-full ml-1 dark:bg-gray-800;
 }
 
 .autocomplete-list {
@@ -33,7 +29,16 @@ body {
 
 .autocomplete-list [role='option'] {
   @apply m-0 transition-colors cursor-pointer;
+
   padding: var(--option-padding) 1em;
+}
+
+.autocomplete-list [role='option']::after {
+  @apply block opacity-50;
+
+  content: attr(data-detail);
+  font-size: calc(var(--font-size) / 1.5);
+  padding-top: calc(var(--option-padding) / 2);
 }
 
 .autocomplete-list [role='option'][aria-selected='true'] {
